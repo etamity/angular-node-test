@@ -7,8 +7,11 @@ angular.module('loginDemo', [
         $scope.loginSuccess = false;
         $scope.loginFailure = false;
         $scope.valid = false;
+
+        var rememberMe = $cookieStore.get('rememberMe');
+
         $scope.user = {
-            username: $cookieStore.get('loginName') || '',
+            username: rememberMe === true ? ($cookieStore.get('loginName') || '') : '',
             password: ''
         };
 
@@ -22,11 +25,11 @@ angular.module('loginDemo', [
             if (result.data.success === true) {
                 $scope.loginSuccess = true;
                 if ($scope.rememberMe) {
-                    $cookieStore.put('loginName', $scope.user.username);
-
+                    $cookieStore.put('rememberMe', $scope.rememberMe);
                 } else {
-                    $cookieStore.remove('loginName');
+                    $cookieStore.remove('rememberMe');
                 }
+                $cookieStore.put('loginName', $scope.user.username);
                 $cookieStore.put('userToken', result.data.token);
                 $cookieStore.put('admin', result.data.admin);
                 window.location = "/#/admin";
@@ -49,7 +52,8 @@ angular.module('loginDemo', [
             $location.path('/');
         }
         var admin = $cookieStore.get('admin') || false;
-
+        $scope.admin = !admin;
+        $scope.currentUser = $cookieStore.get('loginName') || '';
         $scope.getAttempts = function() {
 
             GetAttemptsService.loadData(token, admin, callback);
@@ -105,30 +109,18 @@ angular.module('loginDemo', [
     // provide http request service for each operation
     .factory("LoginService", function($http, $q) {
         var service = {};
+        // login function
         service.login = function(userData, callback) {
-            $http({
-                method: 'POST',
-                url: "http://localhost:8080/api/auth",
-                data: userData,
-                transformRequest: function(obj) {
-                    var str = [];
-                    for (var p in obj)
-                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
-                },
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            }).then(function(response) {
-                callback(response);
-            }, function(response) {
-                callback(response);
-            });
-
-            service.logout = function(callback) {
                 $http({
-                    method: 'GET',
-                    url: "http://localhost:8080/api/logout",
+                    method: 'POST',
+                    url: "http://localhost:8080/api/auth",
+                    data: userData,
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
@@ -138,7 +130,19 @@ angular.module('loginDemo', [
                     callback(response);
                 });
             }
-
+            // logout function
+        service.logout = function(callback) {
+            $http({
+                method: 'GET',
+                url: "http://localhost:8080/api/logout",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).then(function(response) {
+                callback(response);
+            }, function(response) {
+                callback(response);
+            });
         }
         return service;
     })

@@ -1,3 +1,11 @@
+---
+## HOW TO INSTALL AND TEST
+- `npm install -g gulp bower` to install gulp and bower globally
+- `npm install && bower install` on project root folder to install packages
+- `gulp` to start server (default port: 8080, will open in browser)
+---
+
+
 # Sky Apps Team - Welcome!
 The Apps team at Sky are pleased to send you this unattended test. This means we think your CV is pretty good so we want to see if your approach to work is the same as ours. Our team is very Agile and TDD oriented so we believe a few lines of great code speak more than endless CV pages! We’d like you to use this test to show us how awesome you are at what you do.
 

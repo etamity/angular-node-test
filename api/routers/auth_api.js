@@ -8,9 +8,8 @@ var config = require('../config');
 var bodyParser = require('body-parser');
 
 
-module.exports = function(app) {
+module.exports = function(app, apiRoutes) {
 
-    var apiRoutes = express.Router();
     // route to show a random message (GET http://localhost:8080/api/)
     apiRoutes.get('/', function(req, res) {
         res.json({

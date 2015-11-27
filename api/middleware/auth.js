@@ -44,14 +44,16 @@ module.exports = function(app) {
         // Temporary quick fixed with passing parameter from client request 
         // if (req.session && req.session.user && req.session.user.admin)
         var admin = req.body.admin || req.query.admin;
-        console.log("IsAdmin:", admin);
-        if (admin)
+        isAdmin = (admin.toLowerCase() === "true") ? true : false;
+        console.log("IsAdmin:", isAdmin);
+        if (isAdmin === true) {
             return next();
-        else
+        } else {
             return res.json({
                 success: false,
                 message: 'Authentication failed. This is for admin user only'
             });
+        }
     }
 
     // public authentication middleware method

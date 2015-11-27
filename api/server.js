@@ -8,9 +8,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var jwt = require('jsonwebtoken');
 var config = require('./config');
-var auth_api = require('./routers/auth_api')(app);
-var data_api = require('./routers/data_api')(app);
-var middleware = require('./middleware/auth')(app);
+var routes = require('./routers/routes')(app);
 
 
 var port = process.env.PORT || 8080;
@@ -61,15 +59,9 @@ app.get('/', function(req, res) {
     res.send('The API is at http://localhost:' + port + '/api');
 });
 
+
 // set up routes
-app.use('/api', auth_api);
-
-auth_api.use(middleware.authentication);
-
-// set up middleware authentication for admin user accessing
-data_api.use(middleware.adminAuth);
-
-app.use('/api', data_api);
+app.use('/api', routes);
 
 
 app.listen(port);

@@ -4,9 +4,8 @@ var express = require('express');
 var User = require('../models/user');
 var Attempt = require('../models/Attempt');
 
-module.exports = function(app) {
+module.exports = function(app, apiRoutes) {
 
-    var apiRoutes = express.Router();
     // route to return all users (GET http://localhost:8080/api/users)
     apiRoutes.get('/users', function(req, res) {
         User.find({}, function(err, users) {
