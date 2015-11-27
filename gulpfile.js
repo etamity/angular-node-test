@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var User = require('./api/models/user');
 var config = require('./api/config');
 var webserver = require('gulp-webserver');
+var jasmineNode = require('gulp-jasmine-node');
 
 gulp.task('web', function() {
     gulp.src('client')
@@ -18,12 +19,24 @@ gulp.task('web', function() {
 gulp.task('api', function() {
     nodemon({
         script: 'api/server.js',
-        ext: 'js html',
+        ext: 'js',
         env: {
             'NODE_ENV': 'development'
         }
     })
+
 })
+
+
+gulp.task('test', function() {
+    return gulp.src('spec/*.js')
+        // gulp-jasmine works on filepaths so you can't have any plugins before it 
+        .pipe(jasmineNode({
+            timeout: 10000
+        }));
+
+})
+
 
 //Create sample users
 gulp.task('sampleData', function() {
