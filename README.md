@@ -3,10 +3,12 @@
 - `npm install && bower install` on project root folder to install packages
 - `gulp sampleData` to insert sample user data
 - `gulp` to start server (default port: 8080, will open in browser)
----
+
+
 ## HOW TO TEST 
 - `npm install -g karma jasmine` to install gulp and bower globally 
 - `karma start` to start test 
+
 ---
 
 # Sky Apps Team - Welcome!
