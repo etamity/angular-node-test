@@ -1,0 +1,22 @@
+{
+    "name": "client",
+    "version": "1.0.0",
+    "authors": [
+        "etamity <etamity@gmail.com>"
+    ],
+    "description": "Test project from sky",
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "~1.4.8",
+        "angular-cookies": "~1.4.8",
+        "angular-route": "~1.4.8",
+        "bootstrap": "~3.3.6"
+    }
+}
