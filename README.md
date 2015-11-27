@@ -9,6 +9,8 @@
 - `npm install -g karma jasmine` to install gulp and bower globally 
 - `karma start` to start test 
 
+
+
 ---
 
 # Sky Apps Team - Welcome!
