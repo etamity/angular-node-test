@@ -52,7 +52,7 @@ angular.module('loginDemo', [
             $location.path('/');
         }
         var admin = $cookieStore.get('admin') || false;
-        $scope.admin = !admin;
+        $scope.admin = admin;
         $scope.currentUser = $cookieStore.get('loginName') || '';
         $scope.getAttempts = function() {
 
@@ -104,7 +104,6 @@ angular.module('loginDemo', [
 
         }
 
-
     })
     // provide http request service for each operation
     .factory("LoginService", function($http, $q) {
@@ -146,8 +145,7 @@ angular.module('loginDemo', [
         }
         return service;
     })
-
-.factory("GetAttemptsService", function($http, $q) {
+    .factory("GetAttemptsService", function($http, $q) {
         var service = {};
         service.loadData = function(token, admin, callback) {
             $http({

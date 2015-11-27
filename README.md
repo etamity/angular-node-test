@@ -1,15 +1,14 @@
 ## HOW TO INSTALL 
 - `npm install -g gulp bower` to install gulp and bower globally
 - `npm install && bower install` on project root folder to install packages
-- `gulp sampleData` to insert sample user data
-- `gulp` to start server (default port: 8080, will open in browser)
-
+- `gulp` to start server (default web port: 8000, will open in browser,  api port : 8080 )
 
 ## HOW TO TEST 
 - `npm install -g karma jasmine` to install gulp and bower globally 
 - `karma start` to start test 
 
-
+## Optional
+- `gulp sampleData` to insert sample user data
 
 ---
 

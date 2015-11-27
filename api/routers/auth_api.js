@@ -33,7 +33,7 @@ module.exports = function(app, apiRoutes) {
         console.log(req.body);
         console.log('load req.session', req.session);
         var ip = req.headers['X-Forwarded-For'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip; //get ip from request
-
+        ip = (ip === "::1") ? "localhost" : ip
         var attempt = new Attempt({
             ip: ip,
             username: '',

@@ -1,0 +1,47 @@
+<div ng-controller="AdminCtrl">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/#/">Home</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a data-ng-click="getAttempts()" ng-show="admin">Show Attempts</a></li>
+                    <li><a data-ng-click="logout()">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div>
+            <p class="lead">Current login user : {{currentUser}}</p>
+            <p class="lead" ng-show="!admin">Please login with "admin" username to show attempts data. </p>
+        </div>
+    </div>
+    <div class="alert alert-success" ng-show="loadSuccess" role="alert">{{message}}</div>
+    <div class="alert alert-danger" ng-show="loadFailure" role="alert">{{message}}</div>
+    <table class="table table-hover" ng-model="data" ng-show="admin">
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>USERNAME</th>
+                <th>ACTION</th>
+                <th>DATETIME</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in data">
+            <tr>
+                <th scope="row">{{item.ip}}</th>
+                <td>{{item.username}}</td>
+                <td>{{item.action}}</td>
+                <td>{{item.datetime | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

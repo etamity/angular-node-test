@@ -80,4 +80,4 @@ gulp.task('sampleData', function() {
 
 })
 
-gulp.task('default', ['api', 'web']);
+gulp.task('default', ['sampleData', 'api', 'web']);
