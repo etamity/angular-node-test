@@ -17,7 +17,6 @@ require.config({
     baseUrl: '/base',
     paths: {
         request: 'node_module/request',
-
     },
     shim: {
         request: {
