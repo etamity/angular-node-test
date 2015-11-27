@@ -2,8 +2,24 @@
     "name": "node-rest-authentication",
     "main": "server.js",
     "dependencies": {
+        "bcrypt": "^0.8.5",
+        "body-parser": "^1.14.1",
+        "connect-mongo": "^0.8.2",
+        "cookie-parser": "^1.4.0",
+        "cookie-session": "^1.2.0",
         "express": "^4.13.3",
         "express-session": "^1.12.1",
-        "mongoose": "^4.2.7"
+        "gulp": "^3.9.0",
+        "jsonwebtoken": "^5.4.1",
+        "mongoose": "^4.2.7",
+        "morgan": "^1.6.1",
+        "request": "^2.67.0",
+        "requirejs": "^2.1.22"
+    },
+    "devDependencies": {
+        "gulp-nodemon": "^2.0.4",
+        "gulp-webserver": "^0.9.1",
+        "jasmine": "^2.3.2",
+        "karma": "^0.13.15"
     }
 }
