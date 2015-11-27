@@ -1,3 +1,5 @@
+// authentication related functions
+
 var express = require('express');
 var jwt = require('jsonwebtoken');
 
@@ -38,7 +40,9 @@ module.exports = function(app) {
 
 
     var adminAuth = function(req, res, next) {
-        //if (req.session && req.session.user && req.session.user.admin)
+        // There is a unkown issue cause req.session can not be saved. 
+        // Temporary quick fixed with passing parameter from client request 
+        // if (req.session && req.session.user && req.session.user.admin)
         var admin = req.body.admin || req.query.admin;
         console.log("IsAdmin:", admin);
         if (admin)
