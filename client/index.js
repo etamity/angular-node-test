@@ -8,10 +8,10 @@ angular.module('loginDemo', [
         $scope.loginFailure = false;
         $scope.valid = false;
 
-        var rememberMe = $cookieStore.get('rememberMe');
+        $scope.rememberMe = $cookieStore.get('rememberMe');
 
         $scope.user = {
-            username: rememberMe === true ? ($cookieStore.get('loginName') || '') : '',
+            username: $scope.rememberMe === true ? ($cookieStore.get('loginName') || '') : '',
             password: ''
         };
 
@@ -54,10 +54,7 @@ angular.module('loginDemo', [
         var admin = $cookieStore.get('admin') || false;
         $scope.admin = admin;
         $scope.currentUser = $cookieStore.get('loginName') || '';
-        $scope.getAttempts = function() {
 
-            GetAttemptsService.loadData(token, admin, callback);
-        }
         var callback = function(result) {
             console.log(result);
             $scope.loadSuccess = result.data.success;
@@ -74,6 +71,15 @@ angular.module('loginDemo', [
 
         }
 
+        if (admin === true) {
+            GetAttemptsService.loadData(token, admin, callback);
+        }
+
+
+        $scope.getAttempts = function() {
+            GetAttemptsService.loadData(token, admin, callback);
+        }
+
         $scope.logout = function() {
             LoginService.logout(function(result) {
                 $scope.loadSuccess = result.data.success;
@@ -88,7 +94,7 @@ angular.module('loginDemo', [
                         $scope.loginSuccess = false;
                         $scope.loginFailure = false;
                         $location.path('/');
-                    }, 1000);
+                    }, 400);
 
                 } else {
 
