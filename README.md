@@ -4,7 +4,7 @@
 - `gulp` to start server (default web port: 8000, will open in browser,  api port : 8080 )
 
 ## HOW TO TEST 
-- `npm install -g karma jasmine` to install gulp and bower globally 
+- `npm install -g karma jasmine requirejs` to install karma, jasmine and requirejs globally 
 - `karma start` to start test 
 
 ## Optional
