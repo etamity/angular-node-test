@@ -16,6 +16,21 @@ var port = process.env.PORT || 8080;
 // connect to MongoLab database
 mongoose.connect(config.database);
 
+
+// add error log handling
+var serverErrorHandler = function(err, req, res, next) {
+    if (err) {
+        console.log(err);
+        process.exit(1);
+    }
+    next();
+};
+
+
+
+app.use(serverErrorHandler);
+
+
 // set up secret string
 app.set('SECRET_KEY', config.secret);
 
@@ -64,5 +79,6 @@ app.get('/', function(req, res) {
 app.use('/api', routes);
 
 
-app.listen(port);
+app.listen(port); // Please make sure 8080 port is avaliable
+
 console.log('started server at http://localhost:' + port);
