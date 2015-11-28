@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '5.1.0'
+
+before_script:
+  - npm install -g gulp
+
+script:
+  - gulp api
+  - gulp test
+
+notifications:
+	email: false
