@@ -11,3 +11,5 @@ script:
   - gulp test
 
 notifications: never
+
+sudo: required
