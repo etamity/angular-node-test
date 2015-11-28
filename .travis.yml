@@ -10,5 +10,4 @@ script:
   - gulp api
   - gulp test
 
-notifications:
-	email: false
+notifications: never
