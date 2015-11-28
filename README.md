@@ -5,7 +5,7 @@
 
 ## HOW TO TEST 
 - `npm install -g karma jasmine requirejs` to install karma, jasmine and requirejs globally 
-- `gulp test` to start test 
+- `gulp test` to start test (please run `gulp` to start api server first)
 
 ## Optional
 - `gulp sampleData` to insert sample user data

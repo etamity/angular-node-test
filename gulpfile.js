@@ -29,13 +29,28 @@ gulp.task('api', function() {
 
 
 gulp.task('test', function() {
-    return gulp.src('spec/*.js')
+    return gulp.src('test/*.js')
         // gulp-jasmine works on filepaths so you can't have any plugins before it 
         .pipe(jasmineNode({
             timeout: 10000
         }));
 
 })
+
+
+gulp.task('unit', function() {
+    var args = process.argv.slice(2);
+    var env = args[1];
+    env = env.split('').splice(1, env.length).join('');
+    return gulp.src('test/' + env)
+        // gulp-jasmine works on filepaths so you can't have any plugins before it 
+        .pipe(jasmineNode({
+            timeout: 10000
+        }));
+
+})
+
+
 
 
 //Create sample users

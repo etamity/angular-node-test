@@ -48,7 +48,7 @@ describe("Rest Api Test", function() {
             request.post({
                 url: base_url + 'api/auth',
                 form: {
-                    username: 'aDmIn', // username  case-insensitive
+                    username: 'manager', // username  case-insensitive
                     password: 'Password' // case sensitive
                 }
             }, function(error, response, body) {
@@ -59,8 +59,40 @@ describe("Rest Api Test", function() {
         });
     });
 
+
+    // Test logout api
+    describe("POST /api/auth", function() {
+        it("Login with admin user, returns status code 200", function(done) {
+            request.post({
+                url: base_url + 'api/auth',
+                form: {
+                    username: 'admin',
+                    password: 'password'
+                }
+            }, function(error, response, body) {
+                body = JSON.parse(body)
+                expect(response.statusCode).toBe(200);
+                expect(body.success).toBe(true);
+                done();
+
+                describe("GET /api/logout", function() {
+                    it("Logout user, returns status code 200", function(done) {
+                        request.get({
+                            url: base_url + 'api/logout'
+                        }, function(error, response, body) {
+                            body = JSON.parse(body)
+                            expect(response.statusCode).toBe(200);
+                            expect(body.success).toBe(true);
+                            done();
+                        });
+                    });
+                });
+            });
+        });
+    });
+
     // Test authentication api and get all attempts data after login
-    describe("GET /api/attempts", function() {
+    describe("GET /api/auth", function() {
         it("Login with admin user", function(done) {
             request.post({
                 url: base_url + 'api/auth',
@@ -105,7 +137,6 @@ describe("Rest Api Test", function() {
                 url: base_url + 'api/attempts'
             }, function(error, response, body) {
                 body = JSON.parse(body)
-                console.log("body", body);
                 expect(body.success).toBe(false);
                 done();
             });
