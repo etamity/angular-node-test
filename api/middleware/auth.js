@@ -43,9 +43,9 @@ module.exports = function(app) {
         // There is a unkown issue cause req.session can not be saved. 
         // Temporary quick fixed with passing parameter from client request 
         // if (req.session && req.session.user && req.session.user.admin)
-        var admin = req.body.admin || req.query.admin;
-        isAdmin = (admin.toLowerCase() === "true") ? true : false;
-        console.log("IsAdmin:", isAdmin);
+        var admin = req.body.admin || req.query.admin || 'false';
+        isAdmin = (admin.toLowerCase() === 'true') ? true : false;
+        console.log('IsAdmin:', isAdmin);
         if (isAdmin === true) {
             return next();
         } else {
